@@ -24,6 +24,7 @@ namespace E_Loan.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetAllApplication")]
         public async Task<IEnumerable<LoanMaster>> GetAllApplication()
         {
             //do code here

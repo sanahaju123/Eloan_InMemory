@@ -33,7 +33,7 @@ namespace E_Loan
                 });
             services.AddMvc(options => options.EnableEndpointRouting = false).
                 SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
+            services.AddSwaggerGen();
             //To Use InMemory Db
             services.AddDbContext<ELoanDbContext>(options => options.UseInMemoryDatabase(databaseName: "ConnStr"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -58,7 +58,11 @@ namespace E_Loan
 
                 //app.UseHsts();
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
